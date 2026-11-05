@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FELIPE Creative Studio. Diseño gráfico, ilustración y desarrollo web.">
+  <title>FELIPE — Creative Studio</title>
+
+  <style>
+    /* ===== 1. CONFIGURACIÓN GENERAL ===== */
+
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');:root {
+      --bg: #0b0b0b;
+      --surface: #151515;
+      --white: #f5f5f5;
+      --gray: #999;
+      --accent: #c8ff48;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 84%;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    /* ===== 2. BARRA DE NAVEGACIÓN ===== */
+
+    header {
+      height: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8%;
+      border-bottom: 1px solid #252525;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,11,11,.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 5px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      font-size: 13px;
+      color: #aaa;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* ===== 3. INICIO ===== */
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 8%;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 520px;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-visual img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+  animation: floatImage 5s ease-in-out infinite;
+}
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: var(--accent);
+      filter: blur(180px);
+      opacity: .08;
+      right: 0;
+      top: 20%;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+  display: inline-block;
+  width: fit-content;
+  white-space: nowrap;
+  animation: moveText 5s ease-in-out infinite alternate;
+}
+
+@keyframes moveText {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100px);
+  }
+}
+
+    .hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(75px, 11vw, 145px);
+  font-weight: 400;
+  line-height: .90;
+  letter-spacing: 1px;
+  max-width: 1000px;
+  animation: appear 1s ease;
+}
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-description {
+      color: var(--gray);
+      line-height: 1.8;
+      max-width: 470px;
+      margin-top: 30px;
+      font-size: 15px;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 16px 25px;
+      background: var(--accent);
+      color: #111;
+      font-size: 13px;
+      font-weight: bold;
+      display: inline-block;
+      transition: .3s;
+    }
+
+    .button:hover {
+      transform: translateY(-5px);
+      background: white;
+    }
+
+    .text-link {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    /* ===== 4. SECCIONES ===== */
+
+    section.content-section {
+      padding: 110px 8%;
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 4px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: clamp(35px, 5vw, 65px);
+      letter-spacing: -2px;
+      margin-bottom: 45px;
+    }
+
+    /* ===== 5. SERVICIOS ===== */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .service {
+      background: var(--surface);
+      border: 1px solid #252525;
+      padding: 35px;
+      min-height: 240px;
+      transition: .3s;
+    }
+
+    .service:hover {
+      border-color: var(--accent);
+      transform: translateY(-7px);
+    }
+
+    .service-number {
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    .service h3 {
+      margin-top: 35px;
+      font-size: 22px;
+    }
+
+    .service p {
+      margin-top: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    /* ===== 6. PORTAFOLIO ===== */
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .project {
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .project img {
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      transition: .6s;
+    }
+
+    .project:hover img {
+      transform: scale(1.06);
+    }
+
+    .project-info {
+      padding: 20px 5px;
+    }
+
+    .project-info h3 {
+      font-size: 19px;
+    }
+
+    .project-info p {
+      color: var(--gray);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    /* ===== 7. SOBRE MÍ ===== */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image img {
+      height: 430px;
+      object-fit: cover;
+      filter: grayscale(0%);
+    }
+
+    .about-text p {
+      color: var(--gray);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    /* ===== 8. CONTACTO ===== */
+
+    .contact {
+  background: rgba(21, 21, 21, 0);
+  text-align: center;
+}
+
+    .contact h2 {
+      font-size: clamp(40px, 7vw, 80px);
+      margin-bottom: 25px;
+    }
+
+    .contact p {
+      color: var(--gray);
+      margin-bottom: 35px;
+    }
+
+    /* ===== 9. PIE DE PÁGINA ===== */
+
+    footer {
+      padding: 35px 8%;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--gray);
+      font-size: 12px;
+      border-top: 1px solid #252525;
+    }
+
+    /* ===== 10. ANIMACIONES ===== */
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== 11. DISEÑO PARA CELULARES ===== */
+
+    @media (max-width: 768px) {
+
+      header {
+        height: 70px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #151515;
+        flex-direction: column;
+        padding: 25px 8%;
+        gap: 25px;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .hero {
+        min-height: 75vh;
+        padding: 80px 8%;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      section.content-section {
+        padding: 75px 8%;
+      }
+
+      .services-grid,
+      .portfolio-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image img {
+        height: 320px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+@media (max-width: 600px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual img {
+    max-width: 280px;
+  }
+}
+
+/* ===== FONDO ANIMADO GLOBAL FELIPE ===== */
+
+body {
+  position: relative;
+  isolation: isolate;
+  background: var(--bg);
+}
+
+/* Capa de iluminación que cubre toda la página */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 75% 30%,
+      rgba(235, 239, 228, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 20% 65%,
+      rgba(255, 255, 255, 0.07),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 50% 10%,
+      rgba(190, 255, 55, 0.055),
+      transparent 40%
+    );
+
+  animation: globalAurora 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Movimiento lento de las luces */
+@keyframes globalAurora {
+  0% {
+    transform: translate3d(-2%, 1%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2%, -1%, 0) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(-1%, 2%, 0) scale(1.02);
+  }
+}
+
+/* Evitar animación si el usuario lo solicita */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <header>
+    <a href="#inicio" class="logo">FELIPE<span>.</span></a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+    <nav id="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- INICIO -->
+  <section class="hero" id="inicio">
+
+
+  <div class="hero-layout">
+
+    <div class="hero-copy">
+
+      <span class="eyebrow">CREATIVIDAD · DISEÑO · DIGITAL</span>
+
+      <h1>
+        Tu vision,<br>
+        Nuestra<br>
+        <span>Creacion.</span>
+      </h1>
+
+      <p class="hero-description">
+        Somos un estudio creativo enfocado en diseño gráfico,
+        ilustración digital y experiencias web.
+        Transformamos ideas en identidades visuales.
+      </p>
+
+      <div class="hero-bottom">
+        <a href="#portafolio" class="button">EXPLORAR PROYECTOS ↗</a>
+        <a href="#contacto" class="text-link">Hablemos de tu proyecto →</a>
+      </div>
+
+    </div>
+
+    <div class="hero-visual">
+    <img src="Imagenes/ilustracion-felipe.png" alt="Ilustración de FELIPE">
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- SERVICIOS -->
+  <section class="content-section reveal" id="servicios">
+    <p class="section-label">01 — LO QUE HACEMOS</p>
+    <h2 class="section-title">Nuestros servicios.</h2>
+
+    <div class="services-grid">
+
+      <article class="service">
+        <span class="service-number">01 / DESIGN</span>
+        <h3>Diseño gráfico</h3>
+        <p>Identidad visual, logotipos, banners, publicidad y contenido digital.</p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">02 / ART</span>
+        <h3>Ilustración digital</h3>
+        <p>Ilustraciones, composiciones, arte digital y piezas personalizadas.</p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">03 / WEB</span>
+        <h3>Diseño web</h3>
+        <p>Páginas web modernas, adaptables y diseñadas para cada negocio.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PORTAFOLIO -->
+  <section class="content-section reveal" id="portafolio">
+    <p class="section-label">02 — TRABAJO SELECCIONADO</p>
+    <h2 class="section-title">Proyectos destacados.</h2>
+
+    <div class="portfolio-grid">
+
+      <article class="project">
+        <img src="Imagenes/Home cinema.ft.png"
+             alt="Proyecto creativo">
+        <div class="project-info">
+          <h3>Proyecto creativo 01</h3>
+          <p>Diseño gráfico · Identidad visual</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1000"
+             alt="Diseño de espacio">
+        <div class="project-info">
+          <h3>Proyecto creativo 02</h3>
+          <p>Dirección de arte · Diseño</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1000"
+             alt="Diseño visual">
+        <div class="project-info">
+          <h3>Proyecto creativo 03</h3>
+          <p>Branding · Composición</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000"
+             alt="Arte digital">
+        <div class="project-info">
+          <h3>Proyecto creativo 04</h3>
+          <p>Arte digital · Creatividad</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="content-section reveal" id="sobre-mi">
+    <div class="about-grid">
+
+      <div class="about-image">
+        <img src="Imagenes/Felipeee.png" alt="FELIPEEE">
+      </div>
+
+      <div class="about-text">
+        <p class="section-label">03 — QUIÉNES SOMOS</p>
+        <h2 class="section-title">Creatividad con propósito.</h2>
+
+        <p>
+          FELIPE es un espacio creativo donde las ideas
+          toman forma a través del diseño, la ilustración
+          y la tecnología.
+        </p>
+
+        <p>
+          Nuestro enfoque es crear soluciones visuales
+          que comuniquen, conecten y generen experiencias.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="content-section contact reveal" id="contacto">
+    <p class="section-label">04 — HABLEMOS</p>
+
+    <h2>¿Creamos algo<br>increíble?</h2>
+
+    <p>Cuéntanos qué tienes en mente. Hagámoslo realidad.</p>
+
+    <a href="https://wa.me/3157801675" class="button">
+      INICIAR UN PROYECTO ↗
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 FELIPE. Todos los derechos reservados.</span>
+    <span>Diseñado con creatividad.</span>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    // Menú para celulares
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = menu.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", isOpen);
+      menuBtn.textContent = isOpen ? "×" : "☰";
+    });
+
+    // Cerrar menú al seleccionar una sección
+    menu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("open");
+        menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Animaciones al desplazarse
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      observer.observe(element);
+    });
+
+  </script>
+
+</body>
+</html>
